@@ -17,7 +17,7 @@ layui.use([ 'table', 'form' ], function() {
 	layui.form.on('submit(btn-search)', function(data) {
 		// 重新加载表格
 		table.reload("test", {
-			url : 'book/list',
+			url : 'emp/list',
 			where : data.field
 		// 就是表单数据
 
@@ -147,7 +147,7 @@ layui.use([ 'table', 'form' ], function() {
 						layer.close(index);
 						// 重新加载表格
 						table.reload("test", {
-							url : 'book/list'
+							url : 'emp/list'
 						});
 					} else {// 失败的情况
 						// 关闭弹框
@@ -173,7 +173,7 @@ layui.use([ 'table', 'form' ], function() {
 				if (res.code == 0) {
 					// 重新加载表格
 					table.reload("test", {
-						url : 'book/list'
+						url : 'emp/list'
 					});
 				} else {
 					layer.msg(res.msg, {
@@ -195,7 +195,7 @@ layui.use([ 'table', 'form' ], function() {
 			if (res.code == 0) {
 				// 重新加载表格
 				table.reload("test", {
-					url : 'book/list'
+					url : 'emp/list'
 				});
 			} else {
 				layer.msg(res.msg, {
@@ -247,7 +247,7 @@ layui.use('upload', function() {
 	var uploadInst = upload.render({
 		elem : '#photoxInput' // 绑定元素
 		,
-		url : 'book/upload' // 上传接口
+		url : 'emp/upload' // 上传接口
 		,
 		field : "photox"// 修改图片默认file
 		,
