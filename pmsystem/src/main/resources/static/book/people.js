@@ -6,7 +6,7 @@ layui.use('element', function() {
 layui.use([ 'table', 'form' ], function() {
 	var table = layui.table;
 	layui.$.post("dept/findAll", function(data) {
-		for (var i = 0; i < data.length; i++) {
+		for (var i = 1; i < data.length; i++) {
 			var op = new Option(data[i].dname, data[i].id);
 			layui.$("#tidSearch,#tidSel1").append(op);
 		}
@@ -211,7 +211,9 @@ layui.use([ 'table', 'form' ], function() {
 	});
 	// 定义表单打开方法
 	function openBookForm(bookData, tid) {
+		
 		layer.open({
+			
 			title : "书籍维护",
 			type : 1,
 			content : layui.$('#bookEditDiv'),
