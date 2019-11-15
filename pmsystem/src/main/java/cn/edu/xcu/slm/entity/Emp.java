@@ -3,6 +3,9 @@ package cn.edu.xcu.slm.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
@@ -31,7 +34,7 @@ public class Emp implements Serializable {
     private Double salary;
 
     private String photo;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate hiredate;
 
 

@@ -104,7 +104,7 @@
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
-<!--编辑界面  -->
+<!--用户维护界面  -->
 	<div id="peopleEditDiv" style="display: none;">
 		<!-- 这里lay-filter得加上才能通过layui.form.val找到 -->
 		<form class="layui-form" id="" lay-filter="editForm" method="post" action="">
@@ -161,7 +161,7 @@
 		</form>
 		
 	</div>
-	<!--编辑结束  -->
+	<!--用户维护结束  -->
               
           
 <script src="bower_components/layui/dist/layui.js" charset="utf-8"></script>
