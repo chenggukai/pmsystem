@@ -247,7 +247,7 @@ layui.use('laydate', function() {
 	var laydate = layui.laydate;
 	// 执行一个laydate实例
 	laydate.render({
-		elem : '#pubdateInput' // 指定元素
+		elem : '#hiredateInput' // 指定元素
 	});
 });
 //文件上传
