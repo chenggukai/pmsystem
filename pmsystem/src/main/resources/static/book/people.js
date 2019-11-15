@@ -20,7 +20,9 @@ layui.use([ 'table', 'form' ], function() {
 			url : 'emp/list',
 			where : data.field
 		// 就是表单数据
-
+			,page: {
+			    curr: 1 //重新从第 1 页开始
+			  }
 		})
 		return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
@@ -175,6 +177,9 @@ layui.use([ 'table', 'form' ], function() {
 						// 重新加载表格
 						table.reload("test", {
 							url : 'emp/list'
+							,page: {
+								    curr: 1 //重新从第 1 页开始
+								  }
 						});
 					} else {// 失败的情况
 						// 关闭弹框
