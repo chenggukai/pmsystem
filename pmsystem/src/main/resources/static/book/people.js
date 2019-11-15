@@ -17,15 +17,16 @@ layui.use([ 'table', 'form' ], function() {
 	layui.form.on('submit(btn-search)', function(data) {
 		// 重新加载表格
 		table.reload("test", {
-			url: 'book/list',
-			where: data.field //就是表单数据
-		
+			url : 'book/list',
+			where : data.field
+		// 就是表单数据
+
 		})
 		return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
 	table.render({
 		elem : '#test',
-		url : 'book/list',
+		url : 'emp/list',
 		toolbar : '#toolbarDemo' // 开启头部工具栏，并为其绑定左侧模板
 		,
 		defaultToolbar : [ 'filter', 'exports', 'print', { // 自定义头部工具栏右侧图标。
@@ -34,52 +35,52 @@ layui.use([ 'table', 'form' ], function() {
 			layEvent : 'LAYTABLE_TIPS',
 			icon : 'layui-icon-tips'
 		} ],
-		title : '用户数据表',
+		title : '人事资源表',
 		cols : [ [ {
 			type : 'checkbox',
 			fixed : 'left'
 		}, {
 			field : 'id',
-			title : 'ID',
-			width : 80,
+			title : '员工编号',
+			width : 120,
 			fixed : 'left',
 			unresize : true,
 			sort : true
 		}, {
-			field : 'name',
-			title : '书名',
+			field : 'ename',
+			title : '员工姓名',
 			width : 120,
 			edit : 'text'
 		}, {
-			field : 'tid',
-			title : '类型',
-			width : 150
+			field : 'dname',
+			title : '部门名称',
+			width : 120
 
 		}, {
-			field : 'price',
-			title : '价格',
-			width : 80,
+			field : 'job',
+			title : '职位',
+			width : 120
 
 		}, {
-			field : 'descri',
-			title : '描述',
-			width : 100
-		}, {
-			field : 'pubdate',
-			title : '出版日期'
+			field : 'salary',
+			title : '工资',
+			width : 120
 		}, {
 			field : 'photo',
-			title : '图片',
-			width : 80,
-			sort : true,
+			title : '照片',
+			width : 120,
 			templet : function(res) {
 				return '<img src="upload/' + res.photo + '">'
 			}
 		}, {
+			field : 'hiredate',
+			title : '入职日期',
+			width : 120
+		}, {
 			fixed : 'right',
 			title : '操作',
 			toolbar : '#barDemo',
-			width : 150
+			width : 210
 		} ] ],
 		page : true,
 		parseData : function(res) { // res 即为原始返回的数据
@@ -117,10 +118,20 @@ layui.use([ 'table', 'form' ], function() {
 			break;
 		case 'bookAdd':
 			// 书籍添加,代码优化
-			openBookForm({"id":"","name":"","author":" ","tid":"-1","price":"","descri":"","photo":"","pubdate":""});
+			openBookForm({
+				"id" : "",
+				"name" : "",
+				"author" : " ",
+				"tid" : "-1",
+				"price" : "",
+				"descri" : "",
+				"photo" : "",
+				"pubdate" : ""
+			});
 			break;
-		};
-		
+		}
+		;
+
 	});
 	// 监听行工具事件
 	table.on('tool(test)', function(obj) {
@@ -153,7 +164,7 @@ layui.use([ 'table', 'form' ], function() {
 			});
 
 		} else if (obj.event === 'edit') {
-			openBookForm(data,data.tid);
+			openBookForm(data, data.tid);
 		}
 		// 监听书籍修改提交事件
 		layui.form.on('submit(bookBtn)', function(data) {
@@ -198,20 +209,21 @@ layui.use([ 'table', 'form' ], function() {
 		});
 		return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
-	//定义表单打开方法
-	function openBookForm(bookData,tid){
+	// 定义表单打开方法
+	function openBookForm(bookData, tid) {
 		layer.open({
 			title : "书籍维护",
 			type : 1,
 			content : layui.$('#bookEditDiv'),
 			area : [ '50%', '75%' ],
 			success : function(layero, index) {
-				layui.form.val("editForm",bookData);
+				layui.form.val("editForm", bookData);
 				// 如果有图片，显示出来
 				if (bookData.photo) {
-					layui.$("#previewImg").attr("src","upload/" +bookData.photo);
-				}else{
-					layui.$("#previewImg").attr("src","");
+					layui.$("#previewImg").attr("src",
+							"upload/" + bookData.photo);
+				} else {
+					layui.$("#previewImg").attr("src", "");
 				}
 			}
 		});
@@ -237,7 +249,7 @@ layui.use('upload', function() {
 		,
 		field : "photox"// 修改图片默认file
 		,
-		size:1024,
+		size : 1024,
 		choose : function(obj) {
 			obj.preview(function(index, file, result) {
 				layui.$("#previewImg").attr("src", result);
