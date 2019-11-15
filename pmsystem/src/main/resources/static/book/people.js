@@ -5,10 +5,10 @@ layui.use('element', function() {
 
 layui.use([ 'table', 'form' ], function() {
 	var table = layui.table;
-	layui.$.post("type/findAll", function(data) {
+	layui.$.post("dept/findAll", function(data) {
 		for (var i = 0; i < data.length; i++) {
-			var op = new Option(data[i].name, data[i].id);
-			layui.$("#tidSearch,#tidSel").append(op);
+			var op = new Option(data[i].dname, data[i].id);
+			layui.$("#tidSearch,#tidSel1").append(op);
 		}
 		// 不调用看不到select
 		layui.form.render('select');
