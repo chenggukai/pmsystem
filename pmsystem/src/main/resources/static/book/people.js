@@ -14,7 +14,7 @@ layui.use([ 'table', 'form' ], function() {
 		layui.form.render('select');
 	});
 	// 监听条件查询提交事件
-	layui.form.on('submit(btn-search)', function(data) {
+	layui.form.on('submit(peopleSearch1)', function(data) {
 		// 重新加载表格
 		table.reload("test", {
 			url : 'emp/list',
@@ -24,6 +24,7 @@ layui.use([ 'table', 'form' ], function() {
 		})
 		return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
+	
 	table.render({
 		elem : '#test',
 		url : 'emp/list',
@@ -50,24 +51,29 @@ layui.use([ 'table', 'form' ], function() {
 			field : 'ename',
 			title : '员工姓名',
 			width : 120,
+			unresize : true,
 			edit : 'text'
 		}, {
-			field : 'dname',
+			field : 'tid',
 			title : '部门名称',
+			unresize : true,
 			width : 120
 
 		}, {
 			field : 'job',
 			title : '职位',
+			unresize : true,
 			width : 120
 
 		}, {
 			field : 'salary',
 			title : '工资',
+			unresize : true,
 			width : 120
 		}, {
 			field : 'photo',
 			title : '照片',
+			unresize : true,
 			width : 120,
 			templet : function(res) {
 				return '<img src="upload/' + res.photo + '">'
@@ -75,10 +81,12 @@ layui.use([ 'table', 'form' ], function() {
 		}, {
 			field : 'hiredate',
 			title : '入职日期',
+			unresize : true,
 			width : 120
 		}, {
 			fixed : 'right',
 			title : '操作',
+			unresize : true,
 			toolbar : '#barDemo',
 			width : 210
 		} ] ],
@@ -94,9 +102,9 @@ layui.use([ 'table', 'form' ], function() {
 		},
 		limits : [ 2, 4, 6, 8 ]// 修改分页大小值
 		,
-		limit : 2
+		limit : 1
 	});
-	// 删除功能
+	
 
 	// 头工具栏事件
 	table.on('toolbar(test)', function(obj) {
@@ -116,30 +124,49 @@ layui.use([ 'table', 'form' ], function() {
 		case 'LAYTABLE_TIPS':
 			layer.alert('这是工具栏右侧自定义的一个图标按钮');
 			break;
-		case 'bookAdd':
-			// 书籍添加,代码优化
-			openBookForm({
+		case 'addPeople':
+			// 员工添加,代码优化
+			openPeopleForm({
 				"id" : "",
-				"name" : "",
-				"author" : " ",
+				"ename" : "",
+				"job" : " ",
 				"tid" : "-1",
-				"price" : "",
-				"descri" : "",
-				"photo" : "",
-				"pubdate" : ""
+				"salary" : "",
+				"hiredate" : "",
+				"photo" : ""	
 			});
 			break;
-		}
-		;
+		};
+		layui.form.on('submit(peopleSubmit)', function(data) {
+			layui.$.post("emp/update", data.field, function(res) {
+				layer.closeAll();
+				if (res.code == 0) {
+					// 重新加载表格
+					table.reload("test", {
+						url : 'emp/list'
+					});
+				} else {
+					layer.msg(res.msg, {
+						icon : 1,
+						time : 2000
+					// 2秒关闭（如果不配置，默认是3秒）
+					}, function() {
+						// do something
+					});
+				}
+			});
+			return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
+		});
 
 	});
+	
 	// 监听行工具事件
 	table.on('tool(test)', function(obj) {
 		var data = obj.data;
 		// console.log(obj)
 		if (obj.event === 'del') {
-			layer.confirm('你确定要删除《' + data.name + '》这本书吗', function(index) {
-				layui.$.post("book/deleteBook", {
+			layer.confirm('你确定要删除' + data.ename + '这个人吗？', function(index) {
+				layui.$.post("emp/deleteEmp", {
 					id : data.id
 				}, function(data) {
 					if (data.code == 1) {// 删除成功
@@ -164,11 +191,12 @@ layui.use([ 'table', 'form' ], function() {
 			});
 
 		} else if (obj.event === 'edit') {
-			openBookForm(data, data.tid);
+			openPeopleForm(data, data.tid);
 		}
-		// 监听书籍修改提交事件
-		layui.form.on('submit(bookBtn)', function(data) {
-			layui.$.post("book/update", data.field, function(res) {
+		
+		// 监听员工修改提交事件
+		layui.form.on('submit(peopleSubmit)', function(data) {
+			layui.$.post("emp/update", data.field, function(res) {
 				layer.closeAll();
 				if (res.code == 0) {
 					// 重新加载表格
@@ -188,42 +216,20 @@ layui.use([ 'table', 'form' ], function() {
 			return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
 		});
 	});
-	// 监听书籍修改提交事件
-	layui.form.on('submit(bookBtn)', function(data) {
-		layui.$.post("book/update", data.field, function(res) {
-			layer.closeAll();
-			if (res.code == 0) {
-				// 重新加载表格
-				table.reload("test", {
-					url : 'emp/list'
-				});
-			} else {
-				layer.msg(res.msg, {
-					icon : 1,
-					time : 2000
-				// 2秒关闭（如果不配置，默认是3秒）
-				}, function() {
-					// do something
-				});
-			}
-		});
-		return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
-	});
+	
 	// 定义表单打开方法
-	function openBookForm(bookData, tid) {
-		
-		layer.open({
-			
-			title : "书籍维护",
+	function openPeopleForm(peopleData, tid) {	
+		layer.open({		
+			title : "员工信息维护",
 			type : 1,
-			content : layui.$('#bookEditDiv'),
+			content : layui.$('#peopleEditDiv'),
 			area : [ '50%', '75%' ],
 			success : function(layero, index) {
-				layui.form.val("editForm", bookData);
+				layui.form.val("editForm", peopleData);
 				// 如果有图片，显示出来
-				if (bookData.photo) {
+				if (peopleData.photo) {
 					layui.$("#previewImg").attr("src",
-							"upload/" + bookData.photo);
+							"upload/" + peopleData.photo);
 				} else {
 					layui.$("#previewImg").attr("src", "");
 				}
@@ -239,7 +245,7 @@ layui.use('laydate', function() {
 		elem : '#pubdateInput' // 指定元素
 	});
 });
-
+//文件上传
 layui.use('upload', function() {
 	var upload = layui.upload;
 
@@ -251,7 +257,7 @@ layui.use('upload', function() {
 		,
 		field : "photox"// 修改图片默认file
 		,
-		size : 1024,
+		size : 1024*5,
 		choose : function(obj) {
 			obj.preview(function(index, file, result) {
 				layui.$("#previewImg").attr("src", result);
@@ -268,3 +274,4 @@ layui.use('upload', function() {
 		}
 	});
 });
+
