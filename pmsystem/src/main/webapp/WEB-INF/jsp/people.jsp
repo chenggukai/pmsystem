@@ -104,6 +104,70 @@
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+<!--编辑界面  -->
+	<div id="editTpl" style="display: none;">
+		<!-- 这里lay-filter得加上才能通过layui.form.val找到 -->
+		<form class="layui-form" id="" lay-filter="deitform" method="post" action="">
+			<input type="hidden" name="id"> <input type="hidden" name="photo" id="photoInput">
+			<!-- 提示：如果你不想用 form，你可以换成 div 等任何一个普通元素 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">书名</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">作者</label>
+				<div class="layui-input-block">
+					<input type="text" name="author" placeholder="请输入" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">类型</label>
+				<div class="layui-input-block">
+					<select name="tid" lay-filter="tid" id="tidSel">
+						<option value="-1">--请选择--</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">价格</label>
+				<div class="layui-input-block">
+					<input type="text" name="price" placeholder="请输入" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">描述</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入内容" class="layui-textarea" name="descri"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">出版日期</label>
+				<div class="layui-input-block">
+					<input type="text" name="pundate" placeholder="请输入" autocomplete="off" class="layui-input" id="pubdateInput">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">图片</label>
+				<div class="layui-input-block">
+					<!--  -->
+					<button type="button" class="layui-btn" id="photoxInput">
+						<i class="layui-icon">&#xe67c;</i>上传图片
+					</button>
+					<img alt="" id="previewImg">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="bookSubmit">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+	<!--编辑结束  -->
               
           
 <script src="bower_components/layui/dist/layui.js" charset="utf-8"></script>
