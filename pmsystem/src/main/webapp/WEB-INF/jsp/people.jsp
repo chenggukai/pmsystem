@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,8 @@
 					</dl></li>
 			</ul>
 			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="javascript:;"> <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 新哥
+				<li class="layui-nav-item"><a href="javascript:;"> <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+				<security:authentication property="name"/>
 				</a>
 					<dl class="layui-nav-child">
 						<dd>
@@ -59,7 +61,7 @@
 							<a href="">安全设置</a>
 						</dd>
 					</dl></li>
-				<li class="layui-nav-item"><a href="">退出</a></li>
+				<li class="layui-nav-item"><a href="logout">退出</a></li>
 			</ul>
 		</div>
 
@@ -182,18 +184,22 @@
     <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
     <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
     <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+<security:authorize access="hasRole('ROLE_ADMIN')">
     <button class="layui-btn layui-btn-sm" lay-event="addPeople">添加</button>
+</security:authorize>
   </div>
 </script>
 
 	<script type="text/html" id="barDemo">
+<security:authorize access="hasRole('ROLE_ADMIN')">
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</security:authorize>
 </script>
 
 
 	<script src="bower_components/layui/dist/layui.js" charset="utf-8"></script>
-	<script src="book/people.js"></script>
+	<script src="people/people.js"></script>
 
 
 </body>

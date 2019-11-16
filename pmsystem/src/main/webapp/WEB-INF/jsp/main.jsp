@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,8 @@
 					</dl></li>
 			</ul>
 			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="javascript:;"> <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 新哥
+				<li class="layui-nav-item"><a href="javascript:;"> <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+				<security:authentication property="name"/>
 				</a>
 					<dl class="layui-nav-child">
 						<dd>
@@ -40,7 +42,7 @@
 							<a href="">安全设置</a>
 						</dd>
 					</dl></li>
-				<li class="layui-nav-item"><a href="">退了</a></li>
+				<li class="layui-nav-item"><a href="logout">退出</a></li>
 			</ul>
 		</div>
 		<!-- 中间内容 -->
