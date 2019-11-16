@@ -90,7 +90,7 @@ layui.use([ 'table', 'form' ], function() {
 			title : '操作',
 			unresize : true,
 			toolbar : '#barDemo',
-			width : 210
+			width : 244
 		} ] ],
 		page : true,
 		parseData : function(res) { // res 即为原始返回的数据
@@ -102,9 +102,9 @@ layui.use([ 'table', 'form' ], function() {
 			// 解析数据列表
 			};
 		},
-		limits : [ 2, 4, 6, 8 ]// 修改分页大小值
+		limits :[4, 6, 8 ]// 修改分页大小值
 		,
-		limit : 1
+		limit : 6
 	});
 	
 

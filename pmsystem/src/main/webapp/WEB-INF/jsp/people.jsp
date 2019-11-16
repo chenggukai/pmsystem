@@ -6,17 +6,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>人事资源管理系统</title>
 <link rel="stylesheet" href="bower_components/layui/dist/css/layui.css" media="all">
+<style type="text/css">
+            .left{
+                position: absolute;
+                left: 0;
+                top:140px;
+            }
+            .left img{width:100px;height:450px}
+            .right img{width:100px;height:450px}
+            .right{
+                position: absolute;
+                right:0;
+                top:140px;
+            }
+           #content{
+           background-image: url("images/rh01-background-cloud-infra.png.jpg");
+           height:620px;
+           }
+        </style>
 </head>
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
-		<div class="layui-header">
+		<div class="layui-header layui-bg-cyan">
 			<div class="layui-logo">甲骨文</div>
 			<!-- 头部区域（可配合layui已有的水平导航） -->
 			<ul class="layui-nav layui-layout-left">
-				<li class="layui-nav-item"><a href="">公司简介</a></li>
+				<li class="layui-nav-item"><a href="main">公司简介</a></li>
 				<li class="layui-nav-item"><a href="">业务</a></li>
-				<li class="layui-nav-item"><a href="">员工</a></li>
-				<li class="layui-nav-item"><a href="">企业责任</a></li>
+				<li class="layui-nav-item"><a href="people">员工</a></li>				
+				<li class="layui-nav-item"><a href="develop">企业发展</a></li>
 				<li class="layui-nav-item"><a href="javascript:;">其它系统</a>
 					<dl class="layui-nav-child">
 						<dd>
@@ -47,12 +65,15 @@
 
 
 		<!-- 页面容器 -->
-		<div class="layui-container">
+		<div  id="content">
 			<!-- 内容主体区域 -->
 			<div style="padding: 15px;">
+			<div class="layui-container">
 				<!-- 搜索框开始 -->
+				<div class="layui-card">
+ 					 <div class="layui-card-body">
 				<form class="layui-form" id="" lay-filter="peopleSearch" method="post" action="">
-					<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-comment">
+					
 						<div class="layui-form-item">
 							<div class="layui-inline">
 								<label class="layui-form-label">员工姓名</label>
@@ -76,16 +97,22 @@
 						</div>
 					</div>
 				</form>
+				
+				
 				<!-- 搜索框结束 -->
 				<!-- 数据表开始 -->
+				
 				<table class="layui-hide" id="test" lay-filter="test"></table>
+				</div>
+				</div>
 				<!-- 数据表结束 -->
 			</div>
+			
 		</div>
-
-		<div class="layui-footer">
+		
+		<div class="layui-footer" style="left: 0;">
 			<!-- 底部固定区域 -->
-			© xinge.com - 底部固定区域
+			<div style="text-align: center">© xinge.com - 底部固定区域</div>
 		</div>
 	</div>
 
