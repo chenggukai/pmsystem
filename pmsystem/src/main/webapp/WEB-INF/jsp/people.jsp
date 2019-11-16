@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,12 +41,12 @@
 							<a href="">安全设置</a>
 						</dd>
 					</dl></li>
-				<li class="layui-nav-item"><a href="">退了</a></li>
+				<li class="layui-nav-item"><a href="">退出</a></li>
 			</ul>
 		</div>
-	
-		
 
+
+		<!-- 页面容器 -->
 		<div class="layui-container">
 			<!-- 内容主体区域 -->
 			<div style="padding: 15px;">
@@ -56,13 +55,13 @@
 					<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-comment">
 						<div class="layui-form-item">
 							<div class="layui-inline">
-								<label class="layui-form-label">书名</label>
+								<label class="layui-form-label">员工姓名</label>
 								<div class="layui-input-inline">
-									<input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+									<input type="text" name="ename" placeholder="请输入" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-inline">
-								<label class="layui-form-label">类型</label>
+								<label class="layui-form-label">员工部门</label>
 								<div class="layui-input-block">
 									<select name="tid" lay-filter="tid" id="tidSel1">
 										<option value="-1">--请选择--</option>
@@ -78,7 +77,9 @@
 					</div>
 				</form>
 				<!-- 搜索框结束 -->
+				<!-- 数据表开始 -->
 				<table class="layui-hide" id="test" lay-filter="test"></table>
+				<!-- 数据表结束 -->
 			</div>
 		</div>
 
@@ -88,30 +89,14 @@
 		</div>
 	</div>
 
-
-
-
- 
-<script type="text/html" id="toolbarDemo">
-  <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-  </div>
-</script>
- 
-<script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
-<!--用户维护界面  -->
+	<!-- 弹出层开始 -->
 	<div id="peopleEditDiv" style="display: none;">
 		<!-- 这里lay-filter得加上才能通过layui.form.val找到 -->
-		<form class="layui-form" id="" lay-filter="editForm" method="post" action="">
+		<form class="layui-form" id="" lay-filter="editForm" method="post" action="" enctype="multipart/form-data">
 			<input type="hidden" name="id"> <input type="hidden" name="photo" id="photoInput">
 			<!-- 提示：如果你不想用 form，你可以换成 div 等任何一个普通元素 -->
 			<div class="layui-form-item">
-				<label class="layui-form-label">员工姓名</label>
+				<label class="layui-form-label">用户名</label>
 				<div class="layui-input-block">
 					<input type="text" name="ename" placeholder="请输入" autocomplete="off" class="layui-input">
 				</div>
@@ -123,7 +108,7 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">部门名称</label>
+				<label class="layui-form-label">部门</label>
 				<div class="layui-input-block">
 					<select name="tid" lay-filter="tid" id="tidSearch">
 						<option value="-1">--请选择--</option>
@@ -131,7 +116,7 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">薪水</label>
+				<label class="layui-form-label">工资</label>
 				<div class="layui-input-block">
 					<input type="text" name="salary" placeholder="请输入" autocomplete="off" class="layui-input">
 				</div>
@@ -143,13 +128,13 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">照片</label>
+				<label class="layui-form-label">头像</label>
 				<div class="layui-input-block">
 					<!--  -->
 					<button type="button" class="layui-btn" id="photoxInput">
 						<i class="layui-icon">&#xe67c;</i>上传图片
 					</button>
-					<img alt="" id="previewImg">
+					<img alt="" id="previewImg" src="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -161,12 +146,28 @@
 		</form>
 		
 	</div>
-	<!--用户维护结束  -->
-              
-          
-<script src="bower_components/layui/dist/layui.js" charset="utf-8"></script>
-<script src="book/people.js"></script>
- 
+	<!-- 弹出层结束 -->
+
+
+
+	<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    <button class="layui-btn layui-btn-sm" lay-event="addPeople">添加</button>
+  </div>
+</script>
+
+	<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+
+	<script src="bower_components/layui/dist/layui.js" charset="utf-8"></script>
+	<script src="book/people.js"></script>
+
 
 </body>
 </html>

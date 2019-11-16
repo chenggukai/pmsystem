@@ -244,6 +244,7 @@ layui.use([ 'table', 'form' ], function() {
 });
 // <!-- 日历控件 -->
 layui.use('laydate', function() {
+
 	var laydate = layui.laydate;
 	// 执行一个laydate实例
 	laydate.render({
