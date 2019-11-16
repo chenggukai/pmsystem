@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		//配置登录界面
 		http
-		.authorizeRequests().antMatchers("/**/*.js","/**/*.css","/**/*.css.map").permitAll()
+		.authorizeRequests().antMatchers("/**/*.js","/**/*.css","/**/*.css.map","/**/*.png").permitAll()
 		.anyRequest().authenticated().antMatchers("/**").access("hasRole('ROLE_USER')").and()
 		.formLogin().usernameParameter("name").passwordParameter("pwd").loginPage("/user/toLogin").defaultSuccessUrl("/main").permitAll();
 		http.logout().logoutSuccessUrl("/user/toLogin");

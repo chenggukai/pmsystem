@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,40 +9,23 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=basePath%>/bower_components/layui/dist/css/layui.css">
+<style type="text/css">
+	*{padding:0;margin: 0;}
+	input{outline: none;border:none;}
+	#container{width:1540px;height:715px;margin: 0 auto;background: url("<%=basePath%>/images/xxhduiah.png") no-repeat;}
+ 	.username{width:350px;height:35px;margin-left:562px;margin-top:176px;} 
+ 	.password{width:350px;height:35px;margin-left:562px;margin-top:55px;} 
+ 	.submit{width:400px;height:50px;margin-left:562px;top:45px;position:relative;border-radius:7px;color:white;background-color: #6A9D67}	 */
+</style>
+
 </head>
-
 <body>
-	<div class="layui-container">
-		<div class="layui-row">
-			<div class="layui-col-md12">
-				<div class="layui-card">
-					<div class="layui-card-header">您好，请登录</div>
-					<div class="layui-card-body">
-						<form class="layui-form" action="" method="post">
-							<div class="layui-form-item">
-								<label class="layui-form-label">用户名</label>
-								<div class="layui-input-block">
-									<input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<label class="layui-form-label">密码</label>
-								<div class="layui-input-block">
-									<input type="password" name="pwd" placeholder="请输入" autocomplete="off" class="layui-input" lay-verify="author">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<div class="layui-input-block">
-									<button class="layui-btn" lay-submit lay-filter="bookBtn">登录</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<script src="<%=basePath%>/bower_components/layui/dist/layui.js"></script>
+	<div id="container">
+		<form class="layui-form" action="" method="post">							
+		<input type="text" name="name" class="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+		<input type="password" name="pwd" class="password" placeholder="请输入" autocomplete="off" class="layui-input"></br>						
+		<input type="submit" value="登录" class="submit">							
+	</form>
+	</div>
 </body>
 </html>
