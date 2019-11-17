@@ -9,12 +9,11 @@
 </head>
 <body>
 	<div class="layui-layout layui-layout-admin">
-		<div class="layui-header ">
+		<div class="layui-header layui-bg-black">
 			<div class="layui-logo">甲骨文</div>
 			<!-- 头部区域（可配合layui已有的水平导航） -->
 			<ul class="layui-nav layui-layout-left">
 				<li class="layui-nav-item"><a href="main">公司简介</a></li>
-				<li class="layui-nav-item"><a href="">业务</a></li>
 				<li class="layui-nav-item"><a href="people">员工</a></li>				
 				<li class="layui-nav-item"><a href="develop">企业发展</a></li>
 				<li class="layui-nav-item"><a href="javascript:;">其它系统</a>
@@ -63,9 +62,9 @@
 		</div>
 		
 		<!-- 中间内容结束 -->
-		<div class="layui-footer" style="left: 0;">
+		<div class="layui-footer layui-bg-black" style="left: 0;height:52px;">
 			<!-- 底部固定区域 -->
-			<div style="text-align: center">© xinge.com - 底部固定区域</div>
+			<div style="text-align: center">© xinge.com 欢迎您的到来</div>
 		</div>
 	</div>
 
@@ -85,6 +84,15 @@
 	    ,anim: 'fade' //切换动画方式
 	  });
 	});
+	layui.use('element', function(){
+		  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+		  
+		  //监听导航点击
+		  element.on('nav(demo)', function(elem){
+		    //console.log(elem)
+		    layer.msg(elem.text());
+		  });
+		});
 	</script>
 </script>
 	

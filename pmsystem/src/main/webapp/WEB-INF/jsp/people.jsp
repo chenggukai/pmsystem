@@ -33,7 +33,6 @@
 			<!-- 头部区域（可配合layui已有的水平导航） -->
 			<ul class="layui-nav layui-layout-left">
 				<li class="layui-nav-item"><a href="main">公司简介</a></li>
-				<li class="layui-nav-item"><a href="">业务</a></li>
 				<li class="layui-nav-item"><a href="people">员工</a></li>				
 				<li class="layui-nav-item"><a href="develop">企业发展</a></li>
 				<li class="layui-nav-item"><a href="javascript:;">其它系统</a>
@@ -112,9 +111,9 @@
 			
 		</div>
 		
-		<div class="layui-footer" style="left: 0;">
+		<div class="layui-footer layui-bg-green" style="left: 0;height:52px;">
 			<!-- 底部固定区域 -->
-			<div style="text-align: center">© xinge.com - 底部固定区域</div>
+			<div style="text-align: center">© xinge.com 欢迎您的到来</div>
 		</div>
 	</div>
 
